@@ -17,8 +17,6 @@ config/windows_native_icon="res://icon_512.ico"
 
 [autoload]
 
-ObjectPool="*res://Script/Core/object_pool.gd"
-LevelManager="*res://Script/GamePlay/MainGame/level_manager.gd"
 GameEvent="*res://Script/Core/game_event.gd"
 PlayerData="*res://Script/GameData/PlayerData/player_data.gd"
 ItemDatabase="*res://Script/GameData/Item/item_database.gd"
