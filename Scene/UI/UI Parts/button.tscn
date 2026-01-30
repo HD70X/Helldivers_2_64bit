@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyp3a58fjp01t"]
+
+[ext_resource type="Script" uid="uid://dheycte5oqavo" path="res://Script/UI/button_general.gd" id="2_1e3f8"]
+[ext_resource type="Material" uid="uid://dy3wn3mi3r0a6" path="res://Art/Material/pixel_word_canvas(disable).tres" id="3_hitb1"]
+[ext_resource type="FontFile" uid="uid://ev3knnkjthyy" path="res://Art/Forts/m5x7.ttf" id="4_uhm3q"]
+
+[node name="GeneralButton" type="MarginContainer"]
+offset_right = 36.0
+offset_bottom = 18.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_1e3f8")
+laber_transform = Vector2(0, 6)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 42
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 42
+theme_override_constants/margin_bottom = 30
+
+[node name="LayoutLabel" type="Label" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("4_uhm3q")
+theme_override_font_sizes/font_size = 96
+text = "START"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MarginContainer/LayoutLabel"]
+remote_path = NodePath("../../../CanvasGroup")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = ExtResource("3_hitb1")
+position = Vector2(42, 6)
+
+[node name="Label" type="Label" parent="CanvasGroup"]
+texture_filter = 1
+offset_right = 280.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("4_uhm3q")
+theme_override_font_sizes/font_size = 96
+text = "START"

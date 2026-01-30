@@ -1,0 +1,38 @@
+[gd_resource type="Shader" format=3 uid="uid://cp8if74i14d7p"]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform vec4 text_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// 第一层投影参数
+uniform vec2 shadow1_offset = vec2(0.0, 1.0);  // 投影偏移
+uniform vec4 shadow1_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);  // 黑色半透明
+
+// 第二层投影参数
+uniform vec2 shadow2_offset = vec2(0.0, -1.0);  // 另一个方向
+uniform vec4 shadow2_color : source_color = vec4(1.0, 1.0, 1.0, 0.3);  // 白色半透明
+
+void fragment() {
+    // 获取原始文字颜色
+    vec4 original_color = texture(TEXTURE, UV);
+	original_color *= text_color;
+    // 计算第一层投影的 UV 坐标
+    vec2 shadow1_uv = UV + shadow1_offset * TEXTURE_PIXEL_SIZE;
+    vec4 shadow1 = texture(TEXTURE, shadow1_uv);
+    shadow1.rgb = shadow1_color.rgb;
+    shadow1.a *= shadow1_color.a;
+
+    // 计算第二层投影的 UV 坐标
+    vec2 shadow2_uv = UV + shadow2_offset * TEXTURE_PIXEL_SIZE;
+    vec4 shadow2 = texture(TEXTURE, shadow2_uv);
+    shadow2.rgb = shadow2_color.rgb;
+    shadow2.a *= shadow2_color.a;
+
+    // 混合图层:先绘制投影,再绘制原文字
+    vec4 result = shadow2;
+    result = mix(result, shadow1, shadow1.a);
+    result = mix(result, original_color, original_color.a);
+
+    COLOR = result;
+}"

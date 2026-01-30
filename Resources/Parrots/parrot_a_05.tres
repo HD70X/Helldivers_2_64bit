@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ThrowableData" load_steps=5 format=3 uid="uid://nbcf7uesqsm3"]
+
+[ext_resource type="Resource" uid="uid://bhqdq5l14tuvr" path="res://Resources/Parrots/parrot_a_06.tres" id="1_3sa21"]
+[ext_resource type="Texture2D" uid="uid://briyldio0tuc1" path="res://Art/Sprite/Parrots/parrot-a-05.png" id="2_uapyk"]
+[ext_resource type="PackedScene" uid="uid://cpwai7y4avqy6" path="res://Scene/Parrets/parrot_a_05.tscn" id="3_rslok"]
+[ext_resource type="Script" uid="uid://btarij3lja7ue" path="res://Script/GamePlay/MainGame/throwable_data.gd" id="3_uapyk"]
+
+[resource]
+script = ExtResource("3_uapyk")
+type_id = "a_05"
+mergeable = true
+scene = ExtResource("3_rslok")
+preview_tex = ExtResource("2_uapyk")
+next_form = ExtResource("1_3sa21")
+score_value = 20
+metadata/_custom_type_script = "uid://btarij3lja7ue"

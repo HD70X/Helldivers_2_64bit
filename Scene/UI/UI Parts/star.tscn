@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://5t5c4exhikms"]
+
+[ext_resource type="Script" uid="uid://8nno6cav7yap" path="res://Script/UI/star_animation.gd" id="1_6iie8"]
+[ext_resource type="Texture2D" uid="uid://yhfmgc8o2xsu" path="res://Art/Sprite/UI/star_sprite_sheet.png" id="1_7nckw"]
+
+[sub_resource type="Animation" id="Animation_4uc6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6iie8"]
+resource_name = "default"
+loop_mode = 1
+step = 0.2418
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333334, 0.16666667, 0.2, 0.23333333, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.4, 0.43333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.6, 0.6333333, 0.6666667, 0.7, 0.73333335, 0.76666665, 0.8, 0.8333333, 0.8666667, 0.9, 0.93333334, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+}
+
+[sub_resource type="Animation" id="Animation_tmkny"]
+resource_name = "into"
+step = 0.0208
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.020833334, 0.041666668, 0.0625, 0.083333336, 0.104166664, 0.125, 0.14583333, 0.16666667, 0.1875, 0.20833333, 0.22916667, 0.25, 0.27083334, 0.29166666, 0.3125, 0.33333334, 0.35416666, 0.375, 0.39583334, 0.41666666, 0.4375, 0.45833334, 0.47916666, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["default", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yyv7i"]
+_data = {
+&"RESET": SubResource("Animation_4uc6f"),
+&"default": SubResource("Animation_6iie8"),
+&"into": SubResource("Animation_tmkny")
+}
+
+[node name="Star" type="MarginContainer"]
+custom_minimum_size = Vector2(114, 114)
+offset_right = 114.0
+offset_bottom = 114.0
+script = ExtResource("1_6iie8")
+
+[node name="Sprites" type="Sprite2D" parent="."]
+position = Vector2(171, 57)
+texture = ExtResource("1_7nckw")
+hframes = 12
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_yyv7i")
+}

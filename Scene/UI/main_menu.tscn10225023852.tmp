@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvwd4jmj0n4w8"]
+
+[ext_resource type="Script" uid="uid://bgbqligre610t" path="res://Script/MainMenu/main_menu.gd" id="1_6i1m0"]
+[ext_resource type="Texture2D" uid="uid://c17tnuwjau1qv" path="res://Art/Background/background_season_01.png" id="2_6i1m0"]
+[ext_resource type="Theme" uid="uid://cgft1fpai6tgb" path="res://Art/Theme/general_theme.tres" id="3_6aje7"]
+[ext_resource type="PackedScene" uid="uid://cyp3a58fjp01t" path="res://Scene/UI/UI Parts/button.tscn" id="4_m8m1u"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_6i1m0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 182.0
+offset_bottom = 320.0
+texture = ExtResource("2_6i1m0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_6aje7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 360
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 360
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 320
+text = "PARROTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="LevelsButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_m8m1u")]
+layout_mode = 2
+size_flags_horizontal = 1
+_button_text = "START"
+
+[node name="SettingButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_m8m1u")]
+layout_mode = 2
+size_flags_horizontal = 1
+_button_text = "SETTING"
+_button_disabled = true

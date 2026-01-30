@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b8tgwr8a5bnt7"]
+
+[ext_resource type="Shader" uid="uid://c1it2bfvdpfm5" path="res://Art/Material/Shader/pixel_word_canvas.gdshader" id="1_8sw1v"]
+
+[resource]
+shader = ExtResource("1_8sw1v")
+shader_parameter/text_color = Color(0.6862745, 0.39607844, 0.54509807, 1)
+shader_parameter/top_outline_color = Color(0.49411765, 0.3764706, 0.5529412, 1)
+shader_parameter/bottom_outline_color = Color(1, 0.8980392, 0.53333336, 1)
+shader_parameter/outline_width = 6

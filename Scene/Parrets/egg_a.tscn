@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnx3npiui78p3"]
+
+[ext_resource type="Script" uid="uid://bflrvwbdxi41i" path="res://Script/Parrots/parrot_small.gd" id="1_w7nfn"]
+[ext_resource type="Texture2D" uid="uid://sykpsfb00cgq" path="res://Art/Sprite/Parrots/egg-a.png" id="2_w7nfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15lra"]
+radius = 57.280014
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4grtr"]
+radius = 45.85366
+height = 111.21951
+
+[node name="ParrotBase" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+contact_monitor = true
+max_contacts_reported = 8
+script = ExtResource("1_w7nfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_w7nfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_15lra")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18.000002)
+scale = Vector2(1.025, 1.025)
+shape = SubResource("CapsuleShape2D_4grtr")
+
+[node name="DangerZoneWarningTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="DangerZoneTimeoutTimer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+update_rotation = false
+update_scale = false
+
+[connection signal="timeout" from="DangerZoneWarningTimer" to="." method="_on_danger_zone_warning_timer_timeout"]
+[connection signal="timeout" from="DangerZoneTimeoutTimer" to="." method="_on_danger_zone_timeout_timer_timeout"]

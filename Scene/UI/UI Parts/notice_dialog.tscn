@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4sfxrbvy4xm"]
+
+[ext_resource type="Script" path="res://Script/UI/notice_dialog.gd" id="2_d7lmn"]
+[ext_resource type="PackedScene" uid="uid://cyp3a58fjp01t" path="res://Scene/UI/UI Parts/button.tscn" id="4_lfrsw"]
+
+[node name="NoticeDialog" type="MarginContainer"]
+offset_right = 48.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_d7lmn")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 2
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="Contents" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Contents"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Contents/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8980392, 0.53333336, 1)
+theme_override_colors/font_shadow_color = Color(0.9607843, 0.73333335, 0.3137255, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 96
+text = "Title"
+horizontal_alignment = 1
+
+[node name="MassageLabel" type="Label" parent="Contents/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8980392, 0.53333336, 1)
+theme_override_colors/font_shadow_color = Color(0.9607843, 0.73333335, 0.3137255, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 64
+text = "Say something, god damn it. Blah blah blah, who nowadays really reads the long and boring content that an NPC tells you? Now shut up and find 3 quest items for me."
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Contents/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Contents/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="LeftButton" parent="Contents/VBoxContainer/HBoxContainer" instance=ExtResource("4_lfrsw")]
+layout_mode = 2
+size_flags_horizontal = 6
+_button_text = "Confirm"
+
+[node name="RightButton" parent="Contents/VBoxContainer/HBoxContainer" instance=ExtResource("4_lfrsw")]
+layout_mode = 2
+size_flags_horizontal = 6
+_button_text = "Cancel"

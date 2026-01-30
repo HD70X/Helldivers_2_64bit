@@ -1,0 +1,44 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://rdmwj1wa1ptg"]
+
+[sub_resource type="Shader" id="Shader_5v0io"]
+code = "shader_type canvas_item;
+
+uniform vec4 text_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// 上边缘描边颜色
+uniform vec4 top_outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+// 下边缘描边颜色
+uniform vec4 bottom_outline_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+void fragment() {
+    vec4 original_color = texture(TEXTURE, UV);
+    
+    // 检测上方是否有像素（用于判断是否是上边缘）
+    vec2 top_uv = UV + vec2(0.0, -1.0) * TEXTURE_PIXEL_SIZE;
+    float top_alpha = texture(TEXTURE, top_uv).a;
+    
+    // 检测下方是否有像素（用于判断是否是下边缘）
+    vec2 bottom_uv = UV + vec2(0.0, 1.0) * TEXTURE_PIXEL_SIZE;
+    float bottom_alpha = texture(TEXTURE, bottom_uv).a;
+    
+    vec4 result = original_color;
+    result.rgb *= text_color.rgb;
+    
+    // 如果当前像素透明，但上方有不透明像素，则绘制下边缘描边
+    if (original_color.a < 0.5 && top_alpha > 0.5) {
+        result = bottom_outline_color;
+    }
+    
+    // 如果当前像素透明，但下方有不透明像素，则绘制上边缘描边
+    if (original_color.a > 0.5 && top_alpha < 0.5) {
+        result = top_outline_color;
+    }
+    
+    COLOR = result;
+}"
+
+[resource]
+shader = SubResource("Shader_5v0io")
+shader_parameter/text_color = Color(0.3764706, 0.49019608, 0.54509807, 1)
+shader_parameter/top_outline_color = Color(0.27058825, 0.3529412, 0.39215687, 1)
+shader_parameter/bottom_outline_color = Color(0.7411765, 0.7411765, 0.7411765, 1)

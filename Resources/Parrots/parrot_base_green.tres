@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ThrowableData" load_steps=4 format=3 uid="uid://bk8wfb2b5ymql"]
+
+[ext_resource type="Texture2D" uid="uid://witn16bngmj5" path="res://Art/Sprite/Parrots/Parrot_base_green.png" id="1_aif13"]
+[ext_resource type="Script" uid="uid://btarij3lja7ue" path="res://Script/GamePlay/MainGame/throwable_data.gd" id="1_vourk"]
+[ext_resource type="PackedScene" uid="uid://6ah1t0ms5l2q" path="res://Scene/Parrets/parrot_base_green.tscn" id="2_nr1jw"]
+
+[resource]
+script = ExtResource("1_vourk")
+type_id = "base_green"
+mergeable = true
+scene = ExtResource("2_nr1jw")
+preview_tex = ExtResource("1_aif13")
+width = 80.0
+metadata/_custom_type_script = "uid://btarij3lja7ue"

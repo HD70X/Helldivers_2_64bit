@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ItemUnstackable" load_steps=2 format=3 uid="uid://3cmsni6rmg5s"]
+
+[ext_resource type="Script" uid="uid://dan6ivg608xrj" path="res://Script/GameData/Item/item_unstackable.gd" id="1_l2sgg"]
+
+[resource]
+script = ExtResource("1_l2sgg")
+metadata/_custom_type_script = "uid://dan6ivg608xrj"
