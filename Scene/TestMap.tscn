@@ -2,9 +2,9 @@
 
 [ext_resource type="TileSet" uid="uid://dix1gy15fnweh" path="res://Art/TileMap/TileMap_HardSandLand.tres" id="1_rjaj0"]
 [ext_resource type="Script" uid="uid://cfjl2lyh3hjc8" path="res://Script/GamePlay/Character/character_move.gd" id="2_mjq37"]
-[ext_resource type="Texture2D" uid="uid://cjnxpy5kim3il" path="res://Art/Sprite/Character/Character_BA01.png" id="2_p0quj"]
-[ext_resource type="Texture2D" uid="uid://jv3ajpgr5gc1" path="res://Art/Sprite/Character/TestLightTexture.png" id="3_h1mr5"]
-[ext_resource type="Texture2D" uid="uid://b6ntc1dhaa2f7" path="res://Art/Sprite/Character/Character_BA01_head1.png" id="4_uanw7"]
+[ext_resource type="Texture2D" uid="uid://cjnxpy5kim3il" path="res://Art/Sprite/Character/TestFile/Character_BA01.png" id="2_p0quj"]
+[ext_resource type="Texture2D" uid="uid://jv3ajpgr5gc1" path="res://Art/Sprite/Character/TestFile/TestLightTexture.png" id="3_h1mr5"]
+[ext_resource type="Texture2D" uid="uid://b6ntc1dhaa2f7" path="res://Art/Sprite/Character/TestFile/Character_BA01_head1.png" id="4_uanw7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mjq37"]
 radius = 9.0
