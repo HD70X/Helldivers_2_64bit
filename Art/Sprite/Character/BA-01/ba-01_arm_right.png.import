@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dux4q82hootye"
-path="res://.godot/imported/BA-01-Leg.png-6aa8ae9f16711ff54bb55c14ab4e8e88.ctex"
+uid="uid://b3xm42n2kdrpq"
+path="res://.godot/imported/ba-01_arm_right.png-c5890ad567dc583f9818da390a76bcfa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprite/Character/BA-01-Leg.png"
-dest_files=["res://.godot/imported/BA-01-Leg.png-6aa8ae9f16711ff54bb55c14ab4e8e88.ctex"]
+source_file="res://Art/Sprite/Character/BA-01/ba-01_arm_right.png"
+dest_files=["res://.godot/imported/ba-01_arm_right.png-c5890ad567dc583f9818da390a76bcfa.ctex"]
 
 [params]
 

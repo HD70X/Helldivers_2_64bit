@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqepn2inccvet"
-path="res://.godot/imported/BA-01-Cape.png-88e8521acdf22184f103044bbd94a9e1.ctex"
+uid="uid://bnyy6bnjckgb7"
+path="res://.godot/imported/ba-01_body.png-388c4b77f076095287a08437c25a96ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprite/Character/BA-01-Cape.png"
-dest_files=["res://.godot/imported/BA-01-Cape.png-88e8521acdf22184f103044bbd94a9e1.ctex"]
+source_file="res://Art/Sprite/Character/BA-01/ba-01_body.png"
+dest_files=["res://.godot/imported/ba-01_body.png-388c4b77f076095287a08437c25a96ec.ctex"]
 
 [params]
 
