@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b0t4urn3hffdq"]
+[gd_scene load_steps=40 format=3 uid="uid://b0t4urn3hffdq"]
 
 [ext_resource type="Texture2D" uid="uid://cqepn2inccvet" path="res://Art/Sprite/Character/BA-01-Cape.png" id="1_f1ir1"]
 [ext_resource type="Texture2D" uid="uid://dux4q82hootye" path="res://Art/Sprite/Character/BA-01-Leg.png" id="2_1fdet"]
@@ -254,10 +254,44 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_8b5ht"]
 resource_name = "idel"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Legs")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cap")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f1ir1"]
+resource_name = "start_moving"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y2fci"]
 _data = {
-&"idel": SubResource("Animation_8b5ht")
+&"idel": SubResource("Animation_8b5ht"),
+&"start_moving": SubResource("Animation_f1ir1")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -268,6 +302,7 @@ frame_progress = 0.44009402
 
 [node name="Legs" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_idlqw")
+animation = &"idle"
 
 [node name="ArmLeft" type="Sprite2D" parent="."]
 texture = ExtResource("3_h7sir")
@@ -275,14 +310,16 @@ texture = ExtResource("3_h7sir")
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("4_jne1q")
 
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("7_ovutx")
+
 [node name="Weapon(DoubleHand)" type="Sprite2D" parent="."]
 texture = ExtResource("5_sppqt")
 
 [node name="ArmRight" type="Sprite2D" parent="."]
+position = Vector2(-15.989395, -31.777992)
 texture = ExtResource("6_ake87")
-
-[node name="Head" type="Sprite2D" parent="."]
-texture = ExtResource("7_ovutx")
+offset = Vector2(15.989389, 31.777994)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
