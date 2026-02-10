@@ -11,11 +11,12 @@ func _physics_process(delta):
 	var input = Input.get_axis("move_left", "move_right")
 	
 	# 设置转换条件
-	animation_tree.set("parameters/conditions/is_moving", input != 0)
-	animation_tree.set("parameters/conditions/is_not_moving", input == 0)
+	animation_tree.set("parameters/conditions/moving_forward", input > 0)
+	animation_tree.set("parameters/conditions/moving_reverse", input < 0)
+	animation_tree.set("parameters/conditions/not_moving", input == 0)
 	print("输入值: ", input)
 	print("条件值: ", input != 0)
-	print("AnimationTree中的实际条件: ", animation_tree.get("parameters/conditions/is_moving"))
+	print("AnimationTree中的实际条件: ", animation_tree.get("parameters/conditions/moving_forward"))
 	print("当前播放状态: ", playback.get_current_node())
 	print("---")
 	
