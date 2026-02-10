@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://chvxggch1mgb7"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://chvxggch1mgb7"]
 
 [ext_resource type="Shader" uid="uid://dr15knt17goyt" path="res://Art/Material/Shader/pixel_word_shadow.gdshader" id="1_uh5tw"]
 

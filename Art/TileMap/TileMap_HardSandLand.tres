@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://dix1gy15fnweh"]
+[gd_resource type="TileSet" format=3 uid="uid://dix1gy15fnweh"]
 
 [ext_resource type="Texture2D" uid="uid://b34chx36piwpt" path="res://Art/Sprite/Map/SandPlanet/Tile_Map.png" id="1_7gxio"]
 

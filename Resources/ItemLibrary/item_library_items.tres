@@ -1,10 +1,7 @@
-[gd_resource type="Resource" script_class="ItemLibrary" load_steps=3 format=3 uid="uid://udeqaevln5h3"]
+[gd_resource type="Resource" script_class="ItemLibrary" format=3 uid="uid://udeqaevln5h3"]
 
-[ext_resource type="Script" uid="uid://0knak11ww4m6" path="res://Script/GameData/Item/item_data.gd" id="1_fcfhq"]
 [ext_resource type="Script" uid="uid://djinr4c58ts8f" path="res://Script/GameData/Item/item_library.gd" id="2_j0xeq"]
 
 [resource]
 script = ExtResource("2_j0xeq")
-item_resources_folder = "res://Resources/Items/"
-items = Array[ExtResource("1_fcfhq")]([null])
 metadata/_custom_type_script = "uid://djinr4c58ts8f"

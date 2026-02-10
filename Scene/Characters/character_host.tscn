@@ -1,5 +1,6 @@
-[gd_scene load_steps=62 format=3 uid="uid://b0t4urn3hffdq"]
+[gd_scene format=3 uid="uid://b0t4urn3hffdq"]
 
+[ext_resource type="Script" uid="uid://bk20qy5s1ljug" path="res://Script/GamePlay/character.gd" id="1_1fdet"]
 [ext_resource type="Texture2D" uid="uid://btig7agroeew4" path="res://Art/Sprite/Character/BA-01/ba-01_cape.png" id="1_f1ir1"]
 [ext_resource type="Texture2D" uid="uid://vvhurla7jbk6" path="res://Art/Sprite/Character/BA-01/ba-01_leg.png" id="2_1fdet"]
 [ext_resource type="Texture2D" uid="uid://ds6000cut5cvj" path="res://Art/Sprite/Character/BA-01/ba-01_arm_left.png" id="3_h7sir"]
@@ -774,41 +775,92 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y2fci"]
 _data = {
 &"RESET": SubResource("Animation_1fdet"),
-&"idel": SubResource("Animation_8b5ht"),
+&"idle": SubResource("Animation_8b5ht"),
 &"moving_loop": SubResource("Animation_jne1q"),
 &"start_moving": SubResource("Animation_f1ir1"),
 &"stop_moving": SubResource("Animation_h7sir")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1ir1"]
+animation = &"idle"
 
-[node name="Cap" type="AnimatedSprite2D" parent="."]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fdet"]
+animation = &"moving_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h7sir"]
+animation = &"start_moving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jne1q"]
+animation = &"stop_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1fdet"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h7sir"]
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jne1q"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sppqt"]
+advance_mode = 2
+advance_condition = &"is_not_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ake87"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_82202"]
+states/Start/position = Vector2(212.66667, 112.59259)
+states/idle/node = SubResource("AnimationNodeAnimation_f1ir1")
+states/idle/position = Vector2(462.00003, 36.666668)
+states/moving_loop/node = SubResource("AnimationNodeAnimation_1fdet")
+states/moving_loop/position = Vector2(576, 196.29082)
+states/start_moving/node = SubResource("AnimationNodeAnimation_h7sir")
+states/start_moving/position = Vector2(365.99997, 196.35056)
+states/stop_moving/node = SubResource("AnimationNodeAnimation_jne1q")
+states/stop_moving/position = Vector2(783.3333, 196.58894)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1fdet"), "idle", "start_moving", SubResource("AnimationNodeStateMachineTransition_h7sir"), "start_moving", "moving_loop", SubResource("AnimationNodeStateMachineTransition_jne1q"), "moving_loop", "stop_moving", SubResource("AnimationNodeStateMachineTransition_sppqt"), "stop_moving", "idle", SubResource("AnimationNodeStateMachineTransition_ake87")]
+graph_offset = Vector2(-312, -52)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1967240019]
+position = Vector2(414, 241)
+script = ExtResource("1_1fdet")
+
+[node name="Cap" type="AnimatedSprite2D" parent="." unique_id=480410491]
 sprite_frames = SubResource("SpriteFrames_l2hml")
 
-[node name="Legs" type="AnimatedSprite2D" parent="."]
+[node name="Legs" type="AnimatedSprite2D" parent="." unique_id=1393087067]
 sprite_frames = SubResource("SpriteFrames_ub3wt")
 animation = &"idle"
 
-[node name="ArmLeft" type="Sprite2D" parent="."]
+[node name="ArmLeft" type="Sprite2D" parent="." unique_id=1450549887]
 texture = ExtResource("3_h7sir")
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." unique_id=2093884378]
 texture = ExtResource("4_jne1q")
 
-[node name="Head" type="Sprite2D" parent="."]
+[node name="Head" type="Sprite2D" parent="." unique_id=433961097]
 texture = ExtResource("5_ake87")
 
-[node name="Weapon(DoubleHand)" type="Sprite2D" parent="."]
+[node name="Weapon(DoubleHand)" type="Sprite2D" parent="." unique_id=21946424]
 texture = ExtResource("5_sppqt")
 
-[node name="ArmRight" type="Sprite2D" parent="."]
+[node name="ArmRight" type="Sprite2D" parent="." unique_id=1804081426]
 position = Vector2(-16, -31.777992)
 texture = ExtResource("7_ovutx")
 offset = Vector2(16, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1480104536]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_y2fci")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1091620282]
+libraries/ = SubResource("AnimationLibrary_y2fci")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=674460303]
+tree_root = SubResource("AnimationNodeStateMachine_82202")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_moving = false
+parameters/conditions/is_not_moving = true

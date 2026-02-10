@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemStackable" load_steps=2 format=3 uid="uid://ctdi8h0urckcn"]
+[gd_resource type="Resource" script_class="ItemStackable" format=3 uid="uid://ctdi8h0urckcn"]
 
 [ext_resource type="Script" uid="uid://da4m8ge8lkqy8" path="res://Script/GameData/Item/item_stackable.gd" id="1_ctjom"]
 
