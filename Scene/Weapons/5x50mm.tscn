@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b82i4gc36uwmi"]
+
+[ext_resource type="Texture2D" uid="uid://ceicakcond2jw" path="res://Art/Sprite/Weapon/ar_23_liberator/5.5x50mm.png" id="1_8o1s8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klrf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8o1s8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=160576666]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=117251211]
+sprite_frames = SubResource("SpriteFrames_klrf4")

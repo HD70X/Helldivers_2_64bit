@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gemq7j4l0xh"
-path="res://.godot/imported/weapon_ar_23_r.png-0e7344318d74a6860e0ef52d8da74ccb.ctex"
+uid="uid://1elg41ryo6f"
+path="res://.godot/imported/weapon_ar_23.png-8a3f47bb85b2b7119e346e3b8f25962f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprite/Character/weapon_ar_23_r.png"
-dest_files=["res://.godot/imported/weapon_ar_23_r.png-0e7344318d74a6860e0ef52d8da74ccb.ctex"]
+source_file="res://Art/Sprite/Weapon/ar_23_liberator/weapon_ar_23.png"
+dest_files=["res://.godot/imported/weapon_ar_23.png-8a3f47bb85b2b7119e346e3b8f25962f.ctex"]
 
 [params]
 

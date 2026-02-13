@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ds6000cut5cvj" path="res://Art/Sprite/Character/BA-01/ba-01_arm_left.png" id="3_h7sir"]
 [ext_resource type="Texture2D" uid="uid://bnyy6bnjckgb7" path="res://Art/Sprite/Character/BA-01/ba-01_body.png" id="4_jne1q"]
 [ext_resource type="Texture2D" uid="uid://dwv5h4h57ifre" path="res://Art/Sprite/Character/BA-01/ba-01_head.png" id="5_ake87"]
-[ext_resource type="Texture2D" uid="uid://1elg41ryo6f" path="res://Art/Sprite/Character/weapon_ar_23.png" id="5_sppqt"]
+[ext_resource type="PackedScene" uid="uid://dc034focf7hx8" path="res://Scene/Weapons/ar_23_liberator.tscn" id="7_1fdet"]
 [ext_resource type="Texture2D" uid="uid://b3xm42n2kdrpq" path="res://Art/Sprite/Character/BA-01/ba-01_arm_right.png" id="7_ovutx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fdet"]
@@ -630,7 +630,7 @@ states/idle/position = Vector2(346.00003, 322)
 states/move_loop/node = SubResource("AnimationNodeAnimation_1fdet")
 states/move_loop/position = Vector2(571.7778, 195.39981)
 states/move_loop_reverse/node = SubResource("AnimationNodeAnimation_sppqt")
-states/move_loop_reverse/position = Vector2(570.3334, 459.65976)
+states/move_loop_reverse/position = Vector2(571.5185, 459.62866)
 states/start_move/node = SubResource("AnimationNodeAnimation_h7sir")
 states/start_move/position = Vector2(347.55557, 195.69255)
 states/start_move_reverse/node = SubResource("AnimationNodeAnimation_ake87")
@@ -640,7 +640,7 @@ states/stop_move/position = Vector2(801.1111, 195.1986)
 states/stop_move_reverse/node = SubResource("AnimationNodeAnimation_ovutx")
 states/stop_move_reverse/position = Vector2(799.6666, 460.5185)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1fdet"), "idle", "start_move", SubResource("AnimationNodeStateMachineTransition_h7sir"), "start_move", "move_loop", SubResource("AnimationNodeStateMachineTransition_jne1q"), "move_loop", "stop_move", SubResource("AnimationNodeStateMachineTransition_sppqt"), "stop_move", "idle", SubResource("AnimationNodeStateMachineTransition_ake87"), "move_loop", "start_move_reverse", SubResource("AnimationNodeStateMachineTransition_7ca3l"), "start_move_reverse", "move_loop_reverse", SubResource("AnimationNodeStateMachineTransition_ovutx"), "move_loop_reverse", "stop_move_reverse", SubResource("AnimationNodeStateMachineTransition_ftypu"), "stop_move_reverse", "idle", SubResource("AnimationNodeStateMachineTransition_82202"), "move_loop_reverse", "start_move", SubResource("AnimationNodeStateMachineTransition_ag7g4"), "idle", "start_move_reverse", SubResource("AnimationNodeStateMachineTransition_iq5g5"), "stop_move", "start_move_reverse", SubResource("AnimationNodeStateMachineTransition_idlqw"), "stop_move_reverse", "start_move", SubResource("AnimationNodeStateMachineTransition_fkig4")]
-graph_offset = Vector2(-309, -2)
+graph_offset = Vector2(-276, 102)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4v26"]
 atlas = ExtResource("2_1fdet")
@@ -1303,6 +1303,10 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1967240019]
+collision_mask = 62
+floor_snap_length = 8.0
+platform_floor_layers = 4278190118
+platform_wall_layers = 38
 script = ExtResource("1_1fdet")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1480104536]
@@ -1314,7 +1318,6 @@ shape = SubResource("CapsuleShape2D_1fdet")
 libraries/ = SubResource("AnimationLibrary_y2fci")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=674460303]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_82202")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/moving_forward = true
@@ -1333,6 +1336,8 @@ rest = Transform2D(1, 0, 0, 1, 0, 16)
 editor_settings/show_bone_gizmo = false
 
 [node name="Legs" type="AnimatedSprite2D" parent="Skeleton2D/Bone2D/Bone2DLeg" unique_id=1393087067]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(-8, -8)
 sprite_frames = SubResource("SpriteFrames_ub3wt")
 animation = &"idle"
@@ -1352,11 +1357,15 @@ position = Vector2(-24, 20)
 texture = ExtResource("3_h7sir")
 
 [node name="Cap" type="AnimatedSprite2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=480410491]
+light_mask = 3
+visibility_layer = 3
 z_index = -1
 position = Vector2(-8, 28)
 sprite_frames = SubResource("SpriteFrames_l2hml")
 
 [node name="Body" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=2093884378]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(-8, 28)
 texture = ExtResource("4_jne1q")
 
@@ -1366,23 +1375,23 @@ rest = Transform2D(1, 0, 0, 1, 0, -8)
 editor_settings/show_bone_gizmo = false
 
 [node name="Head" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DHead" unique_id=433961097]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(-8, 36)
 texture = ExtResource("5_ake87")
 
 [node name="Skeleton2DArmR" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=241566376]
-position = Vector2(-24, 8)
+position = Vector2(-24, -8)
 rest = Transform2D(1, 0, 0, 1, -24, 8)
-editor_settings/show_bone_gizmo = false
 
-[node name="Skeleton2D" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR" unique_id=1800387054]
-position = Vector2(40, 24)
+[node name="Skeleton2DWeapon" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR" unique_id=1800387054]
+position = Vector2(40, 36)
 rest = Transform2D(1, 0, 0, 1, 40, 24)
-editor_settings/show_bone_gizmo = false
 
-[node name="Weapon(DoubleHand)" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR/Skeleton2D" unique_id=21946424]
-position = Vector2(-24, -4)
-texture = ExtResource("5_sppqt")
+[node name="Weapon" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR/Skeleton2DWeapon" unique_id=951230977 instance=ExtResource("7_1fdet")]
 
 [node name="ArmRight" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR" unique_id=1804081426]
-position = Vector2(16, 20)
+light_mask = 3
+visibility_layer = 3
+position = Vector2(16, 36)
 texture = ExtResource("7_ovutx")
