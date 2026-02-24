@@ -59,6 +59,11 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
+2d_render/layer_1="Envernment"
+2d_render/layer_2="Player"
+2d_render/layer_3="Enemy"
+2d_render/layer_4="PlayerProjector"
+2d_render/layer_5="EnemyProjector"
 2d_physics/layer_1="Players"
 2d_physics/layer_2="World"
 2d_physics/layer_3="Enemy"

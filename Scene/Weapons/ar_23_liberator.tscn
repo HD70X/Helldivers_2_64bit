@@ -25,9 +25,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vtarn"]
-polygon = PackedVector2Array(32, -36, 28, -36, 28, -32, 28, -28, 24, -28, 24, -24, 24, -20, 20, -20, 16, -20, 12, -20, 12, -16, 8, -16, 8, -12, 8, -8, 8, -4, 12, -4, 12, 0, 12, 4, 12, 8, 16, 8, 16, 12, 20, 12, 20, 4, 16, 4, 16, 0, 16, -8, 12, -8, 12, -12, 16, -12, 16, -16, 24, -16, 28, -16, 28, -20, 28, -24, 32, -24, 32, -32)
-
 [node name="Weapon" type="Node2D" unique_id=951230977]
 light_mask = 3
 visibility_layer = 3
@@ -40,16 +37,12 @@ visibility_layer = 3
 position = Vector2(-24, 0)
 sprite_frames = SubResource("SpriteFrames_vtarn")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimatedSprite2D" unique_id=2013371922]
-occluder = SubResource("OccluderPolygon2D_vtarn")
-occluder_light_mask = 2
-
 [node name="Muzzle" type="Node2D" parent="." unique_id=931185357]
 position = Vector2(56, -16)
 
 [node name="PointLight2D" type="PointLight2D" parent="Muzzle" unique_id=957284819]
-range_item_cull_mask = 2
+range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 2
-shadow_item_cull_mask = 2
+shadow_item_cull_mask = 3
 texture = ExtResource("3_dybns")
