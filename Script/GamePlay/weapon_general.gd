@@ -1,26 +1,80 @@
-# weapon_general
 extends Node2D
 
-@export var bullet_scene: PackedScene # 可配置的子弹场景
-@onready var muzzle = $Muzzle
-@onready var muzzle_light = $Muzzle/PointLight2D
-@onready var anim = $AnimatedSprite2D
+# --- 武器配置参数 ---
+@export_group("Ammo System")
+@export var mag_count: int = 4        # 备用弹匣数量
+@export var mag_size: int = 30        # 每个弹匣弹药量
+@export var current_ammo: int = 30    # 当前弹匣剩余
 
-# 这是一个信号：告诉外界我发射了子弹，并把位置和方向传出去
-signal bullet_fired(scene, position, direction)
+@export_group("Firing Specs")
+@export var bullet_speed: float = 800.0
+@export var fire_rate: float = 0.1    # 连射间隔（秒）
+@export var is_full_auto: bool = true # 是否全自动
 
-# 开火方法：这个方法只负责“表演”和“触发信号”
-func fire(dir: Vector2):
-	# 表演部分：枪口闪光逻辑
-	_play_muzzle_flash()
-	anim.play("shoot")
+# --- 内部状态 ---
+var can_fire: bool = true
+var is_reloading: bool = false
+@onready var fire_timer = Timer.new() # 控制连射频率
+
+signal bullet_fired(pos, dir, speed)
+signal ammo_changed(current, mags)
+
+func _ready():
+	add_child(fire_timer)
+	fire_timer.one_shot = true
+	fire_timer.timeout.connect(func(): can_fire = true)
+
+# 外部调用的开火尝试
+func try_fire(dir: Vector2):
+	if not can_fire or is_reloading or current_ammo <= 0:
+		return
 	
-	# 逻辑部分：发出信号，让更高层级去创建子弹
-	# 这样做的好处是：武器不负责“实例化”，所以不用担心生命周期管理
-	bullet_fired.emit(bullet_scene, muzzle.global_position, dir)
+	# 执行开火逻辑
+	_execute_fire(dir)
+	
+	# 如果是半自动，执行一次后设为 false 直到松开按键（需配合输入逻辑）
+	# 这里演示简单的连射频率控制
+	can_fire = false
+	fire_timer.start(fire_rate)
 
+func _execute_fire(dir: Vector2):
+	current_ammo -= 1
+	ammo_changed.emit(current_ammo, mag_count)
+	
+	_play_muzzle_flash()
+	# _play_weapon_animation("shoot") # 播放射击动画
+	
+	bullet_fired.emit($Muzzle.global_position, dir, bullet_speed)
+
+# 换弹逻辑：抛弃当前弹匣
+func start_reload():
+	if mag_count <= 0 or is_reloading or current_ammo == mag_size:
+		return
+		
+	is_reloading = true
+	# _play_weapon_animation("reload") # 播放换弹动画
+	
+	await get_tree().create_timer(2.0).timeout 
+	
+	mag_count -= 1
+	current_ammo = mag_size
+	is_reloading = false
+	_play_weapon_animation("idle") # 回到待机
+	ammo_changed.emit(current_ammo, mag_count)
+	
 func _play_muzzle_flash():
-	muzzle_light.enabled = true
+	if not $Muzzle/PointLight2D: return
+	
+	var flash = $Muzzle/PointLight2D
+	flash.enabled = true
+	flash.energy = 1.5 # 初始亮度
+	
+	# 使用 Tween 实现极速衰减，模拟火药燃爆
 	var tween = create_tween()
-	tween.tween_property(muzzle_light, "energy", 0.0, 0.1)
-	tween.finished.connect(func(): muzzle_light.enabled = false)
+	tween.tween_property(flash, "energy", 0.0, 0.1) # 0.1秒内熄灭
+	tween.finished.connect(func(): flash.enabled = false)
+
+# --- 动画控制接口 ---
+func _play_weapon_animation(anim_name: String):
+	if $AnimatedSprite2D.sprite_frames.has_animation(anim_name):
+		$AnimatedSprite2D.play(anim_name)

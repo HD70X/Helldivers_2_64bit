@@ -10,8 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://b3xm42n2kdrpq" path="res://Art/Sprite/Character/BA-01/ba-01_arm_right.png" id="7_ovutx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1fdet"]
-radius = 40.0
+radius = 36.0
 height = 144.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7sir"]
+radius = 24.0
+height = 136.0
 
 [sub_resource type="Animation" id="Animation_1fdet"]
 length = 0.001
@@ -1314,6 +1318,18 @@ z_index = -1
 position = Vector2(8, -8)
 shape = SubResource("CapsuleShape2D_1fdet")
 
+[node name="HurtBox" type="Area2D" parent="." unique_id=1286120270]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1390850755]
+position = Vector2(8, -12)
+shape = SubResource("CapsuleShape2D_h7sir")
+
+[node name="GroundDetector" type="RayCast2D" parent="." unique_id=1137584388]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1614225747]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1115930365]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1091620282]
 libraries/ = SubResource("AnimationLibrary_y2fci")
 
@@ -1347,12 +1363,12 @@ position = Vector2(0, -20)
 rest = Transform2D(1, 0, 0, 1, 0, -20)
 editor_settings/show_bone_gizmo = false
 
-[node name="Skeleton2DArmL" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=885428059]
+[node name="Bone2DArmL" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=885428059]
 position = Vector2(16, 8)
 rest = Transform2D(1, 0, 0, 1, 16, 8)
 editor_settings/show_bone_gizmo = false
 
-[node name="ArmLeft" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmL" unique_id=1450549887]
+[node name="ArmLeft" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Bone2DArmL" unique_id=1450549887]
 position = Vector2(-24, 20)
 texture = ExtResource("3_h7sir")
 
@@ -1369,28 +1385,28 @@ visibility_layer = 3
 position = Vector2(-8, 28)
 texture = ExtResource("4_jne1q")
 
-[node name="Skeleton2DHead" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=1424217641]
+[node name="Bone2DHead" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=1424217641]
 position = Vector2(0, -8)
 rest = Transform2D(1, 0, 0, 1, 0, -8)
 editor_settings/show_bone_gizmo = false
 
-[node name="Head" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DHead" unique_id=433961097]
+[node name="Head" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Bone2DHead" unique_id=433961097]
 light_mask = 3
 visibility_layer = 3
 position = Vector2(-8, 36)
 texture = ExtResource("5_ake87")
 
-[node name="Skeleton2DArmR" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=241566376]
+[node name="Bone2DArmR" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody" unique_id=241566376]
 position = Vector2(-24, -8)
 rest = Transform2D(1, 0, 0, 1, -24, 8)
 
-[node name="Skeleton2DWeapon" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR" unique_id=1800387054]
+[node name="Bone2DWeapon" type="Bone2D" parent="Skeleton2D/Bone2D/Bone2DBody/Bone2DArmR" unique_id=1800387054]
 position = Vector2(40, 36)
 rest = Transform2D(1, 0, 0, 1, 40, 24)
 
-[node name="Weapon" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR/Skeleton2DWeapon" unique_id=951230977 instance=ExtResource("7_1fdet")]
+[node name="Weapon" parent="Skeleton2D/Bone2D/Bone2DBody/Bone2DArmR/Bone2DWeapon" unique_id=951230977 instance=ExtResource("7_1fdet")]
 
-[node name="ArmRight" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Skeleton2DArmR" unique_id=1804081426]
+[node name="ArmRight" type="Sprite2D" parent="Skeleton2D/Bone2D/Bone2DBody/Bone2DArmR" unique_id=1804081426]
 light_mask = 3
 visibility_layer = 3
 position = Vector2(16, 36)
