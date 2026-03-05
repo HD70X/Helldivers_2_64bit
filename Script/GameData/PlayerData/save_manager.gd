@@ -44,10 +44,14 @@ func save_def():
 	GameSave.save_game(snapshot, _save_path)
 
 
-func lord_def() -> Dictionary:
+func load_def() -> Dictionary:
 	var _save_path = SAVE_DIR + DEF_SAVE_PATH + SAVE_FILE_EXTENSION
 	print("Game loaded: ", _save_path)
 	return GameSave.load_game(_save_path)
+
+# 兼容旧命名，后续可移除
+func lord_def() -> Dictionary:
+	return load_def()
 
 # 将当前数据保存到玩家ID对应的存档
 func save_specific():
@@ -58,6 +62,10 @@ func save_specific():
 		DirAccess.copy_absolute(_save_path, _backup_path)
 	GameSave.save_game(snapshot, _save_path)
 
-func lord_specific(character_id: int) -> Dictionary:
+func load_specific(character_id: int) -> Dictionary:
 	var _save_path = SAVE_DIR + SAVE_FILE_PREFIX + str(character_id) + SAVE_FILE_EXTENSION
 	return GameSave.load_game(_save_path)
+
+# 兼容旧命名，后续可移除
+func lord_specific(character_id: int) -> Dictionary:
+	return load_specific(character_id)

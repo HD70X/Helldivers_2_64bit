@@ -10,7 +10,7 @@ class_name GeneralGameButton
 
 @export var _button_text: String = ""
 @export var _button_disabled: bool = false
-@export var laber_transform = Vector2(0, 0)
+@export var label_transform = Vector2(0, 0)
 
 # 预加载材质 (确保这些材质现在是 ShaderMaterial，且挂在 CanvasGroup 上)
 var normal_material = preload("res://Art/Material/pixel_word_canvas.tres")
@@ -53,23 +53,23 @@ func _update_text_and_sync() -> void:
 func _on_button_down() -> void:
 	is_pressed = true
 	if is_pointed:
-		layout_label.position += laber_transform
+		layout_label.position += label_transform
 
 func _on_button_up() -> void:
 	is_pressed = false
 	if is_pointed:
-		layout_label.position -= laber_transform
+		layout_label.position -= label_transform
 		button_pressed.emit()  # 转发信号
 
 func _on_mouse_entered() -> void:
 	is_pointed = true
 	if is_pressed:
-		layout_label.position += laber_transform
+		layout_label.position += label_transform
 
 func _on_mouse_exited() -> void:
 	is_pointed = false
 	if is_pressed:
-		layout_label.position -= laber_transform
+		layout_label.position -= label_transform
 
 func disable_button():
 	_button_disabled = true
