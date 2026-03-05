@@ -10,7 +10,7 @@ offset_bottom = 18.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_1e3f8")
-laber_transform = Vector2(0, 6)
+label_transform = Vector2(0, 6)
 
 [node name="Button" type="Button" parent="." unique_id=1823641827]
 layout_mode = 2

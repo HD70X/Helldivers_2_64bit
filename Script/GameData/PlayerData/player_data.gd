@@ -19,7 +19,7 @@ func _ready() -> void:
 	# 必须手动实例化类，否则它们是 null
 	inventory = InventoryManager.new()
 	progression = ProgressionManager.new()
-	from_dict(SaveManager.lord_def())
+	from_dict(SaveManager.load_def())
 
 ## 初始化一个全新的玩家数据（用于新游戏）
 func init_new_player() -> void:
