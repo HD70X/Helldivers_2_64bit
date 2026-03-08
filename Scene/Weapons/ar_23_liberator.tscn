@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ccydsax5tcwq8" path="res://Script/GamePlay/weapon_general.gd" id="1_vtarn"]
 [ext_resource type="Texture2D" uid="uid://gemq7j4l0xh" path="res://Art/Sprite/Weapon/ar_23_liberator/weapon_ar_23_r.png" id="2_dybns"]
 [ext_resource type="Texture2D" uid="uid://b5c0hpnryrt3d" path="res://Art/Sprite/Weapon/ar_23_liberator/ar_23_liberator_fire_flash.png" id="3_dybns"]
+[ext_resource type="PackedScene" uid="uid://b82i4gc36uwmi" path="res://Scene/Weapons/5x50mm.tscn" id="4_71dg2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vtarn"]
 animations = [{
@@ -28,6 +29,7 @@ animations = [{
 light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_vtarn")
+bullet_scene = ExtResource("4_71dg2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=937207146]
 light_mask = 3

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b82i4gc36uwmi"]
 
 [ext_resource type="Texture2D" uid="uid://ceicakcond2jw" path="res://Art/Sprite/Weapon/ar_23_liberator/5.5x50mm.png" id="1_8o1s8"]
+[ext_resource type="Script" path="res://Script/GamePlay/Weapons/Projectiles/projectile_base.gd" id="2_qiyts"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_klrf4"]
 animations = [{
@@ -13,7 +14,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="Node2D" unique_id=160576666]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6b4di"]
+radius = 4.0
+
+[node name="Bullet5x50mm" type="Area2D" unique_id=160576666]
+collision_layer = 8
+collision_mask = 39
+script = ExtResource("2_qiyts")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=117251211]
 sprite_frames = SubResource("SpriteFrames_klrf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=178708403]
+shape = SubResource("CircleShape2D_6b4di")

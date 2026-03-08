@@ -10,11 +10,16 @@ extends Node2D
 @export var bullet_speed: float = 800.0
 @export var fire_rate: float = 0.1    # 连射间隔（秒）
 @export var is_full_auto: bool = true # 是否全自动
+@export var bullet_scene: PackedScene
+
+@export_group("Reload")
+@export var reload_time: float = 2.0
 
 # --- 内部状态 ---
 var can_fire: bool = true
 var is_reloading: bool = false
 @onready var fire_timer = Timer.new() # 控制连射频率
+@onready var muzzle: Node2D = get_node_or_null("Muzzle")
 
 signal bullet_fired(pos, dir, speed)
 signal ammo_changed(current, mags)
@@ -28,9 +33,11 @@ func _ready():
 func try_fire(dir: Vector2):
 	if not can_fire or is_reloading or current_ammo <= 0:
 		return
+	if dir == Vector2.ZERO:
+		dir = Vector2.RIGHT
 	
 	# 执行开火逻辑
-	_execute_fire(dir)
+	_execute_fire(dir.normalized())
 	
 	# 如果是半自动，执行一次后设为 false 直到松开按键（需配合输入逻辑）
 	# 这里演示简单的连射频率控制
@@ -43,8 +50,10 @@ func _execute_fire(dir: Vector2):
 	
 	_play_muzzle_flash()
 	# _play_weapon_animation("shoot") # 播放射击动画
-	
-	bullet_fired.emit($Muzzle.global_position, dir, bullet_speed)
+	var muzzle_pos := global_position
+	if muzzle:
+		muzzle_pos = muzzle.global_position
+	bullet_fired.emit(muzzle_pos, dir, bullet_speed)
 
 # 换弹逻辑：抛弃当前弹匣
 func start_reload():
@@ -54,18 +63,22 @@ func start_reload():
 	is_reloading = true
 	# _play_weapon_animation("reload") # 播放换弹动画
 	
-	await get_tree().create_timer(2.0).timeout 
+	await get_tree().create_timer(reload_time).timeout 
 	
 	mag_count -= 1
 	current_ammo = mag_size
 	is_reloading = false
 	_play_weapon_animation("idle") # 回到待机
 	ammo_changed.emit(current_ammo, mag_count)
+
+func get_bullet_scene() -> PackedScene:
+	return bullet_scene
 	
 func _play_muzzle_flash():
-	if not $Muzzle/PointLight2D: return
+	var flash: PointLight2D = get_node_or_null("Muzzle/PointLight2D")
+	if flash == null:
+		return
 	
-	var flash = $Muzzle/PointLight2D
 	flash.enabled = true
 	flash.energy = 1.5 # 初始亮度
 	
