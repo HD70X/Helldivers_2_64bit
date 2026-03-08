@@ -11,7 +11,7 @@ signal ammo_changed(current: int, mags: int)
 
 @export_group("Fire")
 @export var bullet_speed: float = 800.0
-@export var fire_rate: float = 0.1
+@export var rounds_per_minute: float = 500.0
 
 var can_fire := true
 var is_reloading := false
@@ -29,7 +29,7 @@ func try_fire(dir: Vector2) -> void:
 	ammo_changed.emit(current_ammo, mag_count)
 	bullet_fired.emit(global_position, dir, bullet_speed)
 	can_fire = false
-	fire_timer.start(fire_rate)
+	fire_timer.start(_get_fire_interval())
 
 func start_reload(reload_time: float = 2.0) -> void:
 	if mag_count <= 0 or is_reloading or current_ammo >= mag_size:
@@ -40,3 +40,8 @@ func start_reload(reload_time: float = 2.0) -> void:
 	current_ammo = mag_size
 	is_reloading = false
 	ammo_changed.emit(current_ammo, mag_count)
+
+func _get_fire_interval() -> float:
+	if rounds_per_minute > 0.0:
+		return max(60.0 / rounds_per_minute, 0.001)
+	return 0.1

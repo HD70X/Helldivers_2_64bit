@@ -8,7 +8,7 @@ extends Node2D
 
 @export_group("Firing Specs")
 @export var bullet_speed: float = 800.0
-@export var fire_rate: float = 500.0    # 射速（RPM：每分钟发射数）
+@export var rounds_per_minute: float = 500.0
 @export var is_full_auto: bool = true # 是否全自动
 @export var bullet_scene: PackedScene
 
@@ -84,8 +84,8 @@ func get_bullet_scene() -> PackedScene:
 	return bullet_scene
 
 func _get_fire_interval() -> float:
-	if fire_rate > 0.0:
-		return max(60.0 / fire_rate, 0.001)
+	if rounds_per_minute > 0.0:
+		return max(60.0 / rounds_per_minute, 0.001)
 	return 0.1
 	
 func _play_muzzle_flash():

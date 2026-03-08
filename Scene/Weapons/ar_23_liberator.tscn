@@ -30,7 +30,7 @@ light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_vtarn")
 bullet_scene = ExtResource("4_71dg2")
-fire_rate = 500.0
+rounds_per_minute = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=937207146]
 light_mask = 3
