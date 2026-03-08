@@ -10,7 +10,8 @@ signal hit(target: Node)
 var direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	body_entered.connect(_on_any_hit)
+	area_entered.connect(_on_any_hit)
 	await get_tree().create_timer(life_time).timeout
 	if is_inside_tree():
 		queue_free()
@@ -18,8 +19,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	global_position += direction.normalized() * speed * delta
 
-func _on_body_entered(body: Node) -> void:
-	if body.has_method("apply_damage"):
-		body.apply_damage(damage)
-	hit.emit(body)
+func _on_any_hit(target: Node) -> void:
+	if target.has_method("apply_damage"):
+		target.apply_damage(damage)
+	hit.emit(target)
 	queue_free()
