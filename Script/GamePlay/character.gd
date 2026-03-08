@@ -72,7 +72,13 @@ func _find_first_valid_action(candidates: Array[String]) -> String:
 func _handle_combat_input() -> void:
 	if weapon == null:
 		return
-	if fire_action_name != "" and Input.is_action_pressed(fire_action_name):
+	var should_try_fire := false
+	if fire_action_name != "":
+		if _is_weapon_full_auto():
+			should_try_fire = Input.is_action_pressed(fire_action_name)
+		else:
+			should_try_fire = Input.is_action_just_pressed(fire_action_name)
+	if should_try_fire:
 		var fire_dir := _get_weapon_forward_direction()
 		if weapon.has_method("try_fire"):
 			weapon.try_fire(fire_dir)
@@ -112,3 +118,10 @@ func _has_property(target: Object, property_name: StringName) -> bool:
 		if prop.get("name") == property_name:
 			return true
 	return false
+
+func _is_weapon_full_auto() -> bool:
+	if weapon == null:
+		return true
+	if _has_property(weapon, "is_full_auto"):
+		return bool(weapon.get("is_full_auto"))
+	return true

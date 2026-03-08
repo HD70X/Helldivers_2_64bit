@@ -8,18 +8,25 @@ extends Node2D
 
 @export_group("Firing Specs")
 @export var bullet_speed: float = 800.0
-@export var fire_rate: float = 0.1    # 连射间隔（秒）
+@export var rounds_per_second: float = 10.0 # 每秒发射数量
+@export var fire_rate: float = 0.1    # 兼容旧参数：连射间隔（秒）
 @export var is_full_auto: bool = true # 是否全自动
 @export var bullet_scene: PackedScene
 
 @export_group("Reload")
 @export var reload_time: float = 2.0
 
+@export_group("Muzzle Flash")
+@export var flash_peak_energy: float = 1.5
+@export var flash_fade_time: float = 0.08
+
 # --- 内部状态 ---
 var can_fire: bool = true
 var is_reloading: bool = false
+var flash_tween: Tween
 @onready var fire_timer = Timer.new() # 控制连射频率
 @onready var muzzle: Node2D = get_node_or_null("Muzzle")
+@onready var muzzle_flash: PointLight2D = get_node_or_null("Muzzle/PointLight2D")
 
 signal bullet_fired(pos, dir, speed)
 signal ammo_changed(current, mags)
@@ -28,6 +35,9 @@ func _ready():
 	add_child(fire_timer)
 	fire_timer.one_shot = true
 	fire_timer.timeout.connect(func(): can_fire = true)
+	if muzzle_flash:
+		muzzle_flash.enabled = false
+		muzzle_flash.energy = 0.0
 
 # 外部调用的开火尝试
 func try_fire(dir: Vector2):
@@ -42,7 +52,7 @@ func try_fire(dir: Vector2):
 	# 如果是半自动，执行一次后设为 false 直到松开按键（需配合输入逻辑）
 	# 这里演示简单的连射频率控制
 	can_fire = false
-	fire_timer.start(fire_rate)
+	fire_timer.start(_get_fire_interval())
 
 func _execute_fire(dir: Vector2):
 	current_ammo -= 1
@@ -73,19 +83,30 @@ func start_reload():
 
 func get_bullet_scene() -> PackedScene:
 	return bullet_scene
+
+func _get_fire_interval() -> float:
+	if rounds_per_second > 0.0:
+		return max(1.0 / rounds_per_second, 0.001)
+	if fire_rate > 0.0:
+		return max(fire_rate, 0.001)
+	return 0.1
 	
 func _play_muzzle_flash():
-	var flash: PointLight2D = get_node_or_null("Muzzle/PointLight2D")
-	if flash == null:
+	if muzzle_flash == null:
 		return
-	
-	flash.enabled = true
-	flash.energy = 1.5 # 初始亮度
-	
-	# 使用 Tween 实现极速衰减，模拟火药燃爆
-	var tween = create_tween()
-	tween.tween_property(flash, "energy", 0.0, 0.1) # 0.1秒内熄灭
-	tween.finished.connect(func(): flash.enabled = false)
+	if flash_tween and flash_tween.is_valid():
+		flash_tween.kill()
+
+	muzzle_flash.enabled = true
+	muzzle_flash.energy = flash_peak_energy
+
+	# 用光强做快速衰减，避免频繁改 visible 的突兀闪烁
+	flash_tween = create_tween()
+	flash_tween.tween_property(muzzle_flash, "energy", 0.0, flash_fade_time)
+	flash_tween.finished.connect(func():
+		if is_instance_valid(muzzle_flash):
+			muzzle_flash.enabled = false
+	)
 
 # --- 动画控制接口 ---
 func _play_weapon_animation(anim_name: String):
