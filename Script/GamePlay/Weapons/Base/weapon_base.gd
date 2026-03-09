@@ -23,6 +23,13 @@ signal ammo_changed(current: int, mags: int)
 @export var spread_recovery_per_second_degrees: float = 0.0
 @export var current_spread_degrees: float = 0.0
 
+@export_group("Recoil Pitch")
+@export var initial_pitch_offset_degrees: float = 0.0
+@export var max_pitch_offset_degrees: float = 0.0
+@export var pitch_increase_per_shot_degrees: float = 0.0
+@export var pitch_recovery_per_second_degrees: float = 0.0
+@export var current_pitch_offset_degrees: float = 0.0
+
 @export_group("Reload")
 @export var reload_time: float = 2.0
 
@@ -41,6 +48,7 @@ var _fired_this_frame := false
 func _ready() -> void:
 	_sanitize_exports()
 	current_spread_degrees = min_spread_degrees
+	current_pitch_offset_degrees = initial_pitch_offset_degrees
 	add_child(fire_timer)
 	fire_timer.one_shot = true
 	fire_timer.timeout.connect(func(): can_fire = true)
@@ -57,6 +65,11 @@ func _process(delta: float) -> void:
 		min_spread_degrees,
 		spread_recovery_per_second_degrees * delta
 	)
+	current_pitch_offset_degrees = move_toward(
+		current_pitch_offset_degrees,
+		initial_pitch_offset_degrees,
+		pitch_recovery_per_second_degrees * delta
+	)
 
 func try_fire(dir: Vector2) -> void:
 	if not can_fire or is_reloading or current_ammo <= 0:
@@ -64,6 +77,7 @@ func try_fire(dir: Vector2) -> void:
 	var base_dir := dir.normalized()
 	if base_dir == Vector2.ZERO:
 		base_dir = Vector2.RIGHT
+	base_dir = _apply_pitch_offset(base_dir)
 	current_ammo -= 1
 	ammo_changed.emit(current_ammo, mag_count)
 	var fire_origin := global_position
@@ -77,6 +91,11 @@ func try_fire(dir: Vector2) -> void:
 		current_spread_degrees + spread_increase_per_shot_degrees,
 		min_spread_degrees,
 		max_spread_degrees
+	)
+	current_pitch_offset_degrees = clampf(
+		current_pitch_offset_degrees + pitch_increase_per_shot_degrees,
+		initial_pitch_offset_degrees,
+		max_pitch_offset_degrees
 	)
 	can_fire = false
 	_fired_this_frame = true
@@ -109,12 +128,25 @@ func _build_projectile_directions(base_dir: Vector2) -> Array[Vector2]:
 		directions.append(base_dir.rotated(deg_to_rad(spread_offset)).normalized())
 	return directions
 
+func _apply_pitch_offset(base_dir: Vector2) -> Vector2:
+	if current_pitch_offset_degrees <= 0.0:
+		return base_dir
+	var horizontal_sign := signf(base_dir.x)
+	if is_zero_approx(horizontal_sign):
+		horizontal_sign = 1.0
+	var pitch_rotation := deg_to_rad(current_pitch_offset_degrees * -horizontal_sign)
+	return base_dir.rotated(pitch_rotation).normalized()
+
 func _sanitize_exports() -> void:
 	pellets_per_shot = max(1, pellets_per_shot)
 	min_spread_degrees = maxf(0.0, min_spread_degrees)
 	max_spread_degrees = maxf(min_spread_degrees, max_spread_degrees)
 	spread_increase_per_shot_degrees = maxf(0.0, spread_increase_per_shot_degrees)
 	spread_recovery_per_second_degrees = maxf(0.0, spread_recovery_per_second_degrees)
+	initial_pitch_offset_degrees = maxf(0.0, initial_pitch_offset_degrees)
+	max_pitch_offset_degrees = maxf(initial_pitch_offset_degrees, max_pitch_offset_degrees)
+	pitch_increase_per_shot_degrees = maxf(0.0, pitch_increase_per_shot_degrees)
+	pitch_recovery_per_second_degrees = maxf(0.0, pitch_recovery_per_second_degrees)
 
 func _play_muzzle_flash() -> void:
 	if muzzle_flash == null:
