@@ -8,10 +8,10 @@ Early prototype.
 
 ## Documentation
 
-- Docs index: `docs/README.md`
-- Design overview template: `docs/design/项目设计总览.md`
-- Map design spec draft: `docs/design/地图设计规范.md`
-- Development checklist: `docs/process/开发提交清单.md`
+- Docs index: `Docs/README.md`
+- Design overview template: `Docs/design/项目设计总览.md`
+- Most system or tech design: `Docs/design/`
+- Development checklist: `Docs/process/开发者日志.md`
 
 ## Documentation Language
 
