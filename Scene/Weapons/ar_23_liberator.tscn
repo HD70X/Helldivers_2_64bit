@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dc034focf7hx8"]
 
 [ext_resource type="Texture2D" uid="uid://1elg41ryo6f" path="res://Art/Sprite/Weapon/ar_23_liberator/weapon_ar_23.png" id="1_cf2dl"]
-[ext_resource type="Script" path="res://Script/GamePlay/Weapons/Base/weapon_base.gd" id="1_vtarn"]
+[ext_resource type="Script" uid="uid://deik6bsghwy41" path="res://Script/GamePlay/Weapons/Base/weapon_base.gd" id="1_vtarn"]
 [ext_resource type="Texture2D" uid="uid://gemq7j4l0xh" path="res://Art/Sprite/Weapon/ar_23_liberator/weapon_ar_23_r.png" id="2_dybns"]
 [ext_resource type="Texture2D" uid="uid://b5c0hpnryrt3d" path="res://Art/Sprite/Weapon/ar_23_liberator/ar_23_liberator_fire_flash.png" id="3_dybns"]
 [ext_resource type="PackedScene" uid="uid://b82i4gc36uwmi" path="res://Scene/Weapons/5x50mm.tscn" id="4_71dg2"]
@@ -30,7 +30,10 @@ light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_vtarn")
 bullet_scene = ExtResource("4_71dg2")
-rounds_per_minute = 500.0
+min_spread_degrees = 2.0
+max_spread_degrees = 5.0
+spread_increase_per_shot_degrees = 0.3
+spread_recovery_per_second_degrees = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=937207146]
 light_mask = 3

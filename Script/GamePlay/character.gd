@@ -63,10 +63,11 @@ func _resolve_input_actions() -> void:
 	fire_action_name = _find_first_valid_action(FIRE_ACTION_CANDIDATES)
 	reload_action_name = _find_first_valid_action(RELOAD_ACTION_CANDIDATES)
 
-func _find_first_valid_action(candidates: Array[String]) -> String:
+func _find_first_valid_action(candidates: Array) -> String:
 	for action_name in candidates:
-		if InputMap.has_action(action_name):
-			return action_name
+		var resolved_action_name := String(action_name)
+		if InputMap.has_action(resolved_action_name):
+			return resolved_action_name
 	return ""
 
 func _handle_combat_input() -> void:
