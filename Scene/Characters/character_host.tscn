@@ -1336,8 +1336,8 @@ libraries/ = SubResource("AnimationLibrary_y2fci")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=674460303]
 tree_root = SubResource("AnimationNodeStateMachine_82202")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/moving_forward = true
-parameters/conditions/moving_reverse = true
+parameters/conditions/moving_forward = false
+parameters/conditions/moving_reverse = false
 parameters/conditions/not_moving = true
 
 [node name="Skeleton2D" type="Skeleton2D" parent="." unique_id=1537188946]
