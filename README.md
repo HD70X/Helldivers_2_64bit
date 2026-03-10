@@ -9,9 +9,11 @@ Early prototype.
 ## Documentation
 
 - Docs index: `Docs/README.md`
-- Design overview template: `Docs/design/项目设计总览.md`
-- Most system or tech design: `Docs/design/`
-- Development checklist: `Docs/process/开发者日志.md`
+- Design overview: `Docs/Design/项目设计总览.md`
+- Most system / tech design docs: `Docs/Design/`
+- Process / tracking docs: `Docs/Process/`
+- Development checklist: `Docs/Process/开发提交清单.md`
+- Demo feasibility plan: `Docs/Process/短期Demo可行性方案.md`
 
 ## Documentation Language
 

@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcipfxuqymt7t"]
+[gd_scene format=3 uid="uid://dcipfxuqymt7t"]
 
-[ext_resource type="Script" uid="uid://bgbqligre610t" path="res://Script/MainMenu/main_menu.gd" id="1_6i1m0"]
+[ext_resource type="Script" uid="uid://ccypsav5tlajd" path="res://Script/MainMenu/main_menu.gd" id="1_6i1m0"]
 [ext_resource type="PackedScene" uid="uid://cyp3a58fjp01t" path="res://Scene/UI/UI Parts/button.tscn" id="4_m8m1u"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" unique_id=427372762]
 script = ExtResource("1_6i1m0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1825432414]
 offset_right = 182.0
 offset_bottom = 320.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=961533473]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=823960650]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1222604233]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,40 +33,40 @@ theme_override_constants/margin_top = 360
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 360
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1313657197]
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1368752744]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1229572008]
 layout_mode = 2
-theme_override_font_sizes/font_size = 320
-text = "PARROTS"
+theme_override_font_sizes/font_size = 128
+text = "HELLDIVERS II 64BIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2038236734]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1977144600]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 12
 
-[node name="StarButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_m8m1u")]
+[node name="StartButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1747211333 instance=ExtResource("4_m8m1u")]
 layout_mode = 2
 size_flags_horizontal = 1
 _button_text = "START"
 
-[node name="LevelsButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_m8m1u")]
+[node name="ExitButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1318031462 instance=ExtResource("4_m8m1u")]
 layout_mode = 2
 size_flags_horizontal = 1
-_button_text = "LEVEL"
+_button_text = "EXIT"
 
-[node name="SettingButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_m8m1u")]
+[node name="SettingButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/VBoxContainer" unique_id=275245474 instance=ExtResource("4_m8m1u")]
 layout_mode = 2
 size_flags_horizontal = 1
 _button_text = "SETTING"

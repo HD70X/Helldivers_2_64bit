@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://dia1bjsey1b3e"]
 
+[ext_resource type="Script" path="res://Script/GamePlay/demo_scene_controller.gd" id="1_olfwy"]
 [ext_resource type="TileSet" uid="uid://cxnmjtfk7muv0" path="res://Art/TileMap/tile_set_sandbase.tres" id="1_mjq37"]
-[ext_resource type="PackedScene" uid="uid://b0t4urn3hffdq" path="res://Scene/Characters/character_host.tscn" id="3_mjq37"]
+[ext_resource type="PackedScene" uid="uid://b0t4urn3hffdq" path="res://Scene/Characters/character.tscn" id="3_mjq37"]
 [ext_resource type="Texture2D" uid="uid://dnfrxl0ht7oyb" path="res://Art/Sprite/Map/tilemap_area.png" id="4_uanw7"]
 
 [node name="Node2D" type="Node2D" unique_id=158305522]
+script = ExtResource("1_olfwy")
 
 [node name="Map_Platform" type="Node2D" parent="." unique_id=1371010179]
 

@@ -4,12 +4,18 @@
 
 ## 1) 设计文档（Design）
 
-- `docs/design/项目设计总览.md`
-- `docs/design/地图设计规范.md`
+- `Docs/Design/项目设计总览.md`
+- `Docs/Design/地图（随机地图和图层设计）.md`
+- `Docs/Design/玩家角色.md`
+- `Docs/Design/玩家角色输入参考.md`
+- `Docs/Design/武器设计.md`
+- `Docs/Design/网络联机概念.md`
 
 ## 2) 流程文档（Process）
 
-- `docs/process/开发提交清单.md`
+- `Docs/Process/开发提交清单.md`
+- `Docs/Process/短期Demo可行性方案.md`
+- `Docs/Process/短期Demo规划-内部备份.md`
 
 ## 3) 文档约定
 
