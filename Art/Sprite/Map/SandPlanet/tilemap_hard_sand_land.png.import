@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceicakcond2jw"
-path="res://.godot/imported/5.5x50mm.png-da7cdfe076d0b98f5adf62a7a3334923.ctex"
+uid="uid://b34chx36piwpt"
+path="res://.godot/imported/tilemap_hard_sand_land.png-ca9f6fa937494d06d34e3930d1581eb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sprite/Weapon/ar_23_liberator/5.5x50mm.png"
-dest_files=["res://.godot/imported/5.5x50mm.png-da7cdfe076d0b98f5adf62a7a3334923.ctex"]
+source_file="res://Art/Sprite/Map/SandPlanet/tilemap_hard_sand_land.png"
+dest_files=["res://.godot/imported/tilemap_hard_sand_land.png-ca9f6fa937494d06d34e3930d1581eb6.ctex"]
 
 [params]
 

@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://bi4jvbk8uchgf"]
+
+[ext_resource type="Script" uid="uid://r401o5vwqdo" path="res://Script/UI/demo_hud.gd" id="1_demo_hud"]
+
+[node name="DemoHUD" type="CanvasLayer" unique_id=932893966]
+script = ExtResource("1_demo_hud")
+
+[node name="Control" type="Control" parent="." unique_id=801807426]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1454727054]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=834757666]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StepLabel" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=427214914]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Current Objective"
+
+[node name="HintLabel" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=1570350058]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Hint Text"
+
+[node name="HintsContainer" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=183002110]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="MoveHintRow" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HintsContainer" unique_id=1872209613]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MoveHintRow" unique_id=1932032154]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Move"
+
+[node name="KeyIconTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MoveHintRow" unique_id=1718781979]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyTextLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MoveHintRow" unique_id=919631207]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "A / D"
+
+[node name="FireHintRow" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HintsContainer" unique_id=1330019800]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/FireHintRow" unique_id=497569757]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Fire"
+
+[node name="KeyIconTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HintsContainer/FireHintRow" unique_id=578617027]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyTextLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/FireHintRow" unique_id=1087215594]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Mouse Left"
+
+[node name="ReloadHintRow" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HintsContainer" unique_id=1818783363]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/ReloadHintRow" unique_id=2114223876]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Reload"
+
+[node name="KeyIconTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HintsContainer/ReloadHintRow" unique_id=1993532661]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyTextLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/ReloadHintRow" unique_id=1777119149]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "R"
+
+[node name="MenuHintRow" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer/HintsContainer" unique_id=1519511321]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ActionLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MenuHintRow" unique_id=1355647840]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Menu"
+
+[node name="KeyIconTexture" type="TextureRect" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MenuHintRow" unique_id=1036290611]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="KeyTextLabel" type="Label" parent="Control/MarginContainer/VBoxContainer/HintsContainer/MenuHintRow" unique_id=817183467]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Esc"
+
+[node name="CompletePanel" type="PanelContainer" parent="Control" unique_id=704909667]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -90.0
+offset_right = 220.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CompletePanel" unique_id=80788209]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CompleteTitleLabel" type="Label" parent="Control/CompletePanel/VBoxContainer" unique_id=1632310075]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Demo Complete"
+horizontal_alignment = 1
+
+[node name="CompleteHintLabel" type="Label" parent="Control/CompletePanel/VBoxContainer" unique_id=323506980]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Press R to Restart / Esc to Menu"
+horizontal_alignment = 1

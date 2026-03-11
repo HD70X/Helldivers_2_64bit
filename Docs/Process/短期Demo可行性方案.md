@@ -17,7 +17,7 @@
 - 已有基础移动、重力、斜坡与动画切换逻辑：`Script/GamePlay/character.gd`
 - 已有基础武器与投射物闭环：
   - `Scene/Weapons/ar_23_liberator.tscn`
-  - `Scene/Weapons/5x50mm.tscn`
+  - `Scene/Weapons/5_5x50mm.tscn`
   - `Script/GamePlay/Weapons/Base/weapon_base.gd`
   - `Script/GamePlay/Weapons/Projectiles/projectile_base.gd`
 - 已有部分 UI 骨架：`Scene/UI/main_menu.tscn`

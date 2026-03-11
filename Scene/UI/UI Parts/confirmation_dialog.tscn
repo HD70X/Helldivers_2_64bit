@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://bk24cxapo64q8"]
 
+[ext_resource type="Theme" uid="uid://dgsjmaqfpyx82" path="res://Art/Theme/theme_general.tres" id="1_t8r13"]
 [ext_resource type="Script" uid="uid://c8p5y3tnmgvgw" path="res://Script/UI/confirmation_dialog.gd" id="2_6kwu3"]
 [ext_resource type="PackedScene" uid="uid://cyp3a58fjp01t" path="res://Scene/UI/UI Parts/button.tscn" id="3_6kwu3"]
+[ext_resource type="FontFile" uid="uid://ev3knnkjthyy" path="res://Art/Fonts/m5x7.ttf" id="3_8wy1f"]
 
 [node name="ConfirmationDialog" type="MarginContainer" unique_id=1395981389]
-offset_right = 48.0
-offset_bottom = 48.0
+offset_right = 1000.0
+offset_bottom = 675.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_t8r13")
 script = ExtResource("2_6kwu3")
 
 [node name="Background" type="NinePatchRect" parent="." unique_id=1418110515]
@@ -37,17 +40,21 @@ theme_override_colors/font_shadow_color = Color(0.9607843, 0.73333335, 0.3137255
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 4
 theme_override_constants/shadow_outline_size = 0
-theme_override_font_sizes/font_size = 96
+theme_override_fonts/font = ExtResource("3_8wy1f")
+theme_override_font_sizes/font_size = 64
 text = "Title"
 horizontal_alignment = 1
 
 [node name="MassageLabel" type="Label" parent="Contents/VBoxContainer" unique_id=486182739]
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 0.8980392, 0.53333336, 1)
 theme_override_colors/font_shadow_color = Color(0.9607843, 0.73333335, 0.3137255, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_8wy1f")
 theme_override_font_sizes/font_size = 64
 text = "Say something, god damn it. Blah blah blah, who nowadays really reads the long and boring content that an NPC tells you? Now shut up and find 3 quest items for me."
 autowrap_mode = 3

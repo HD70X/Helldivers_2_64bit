@@ -1,54 +1,64 @@
 extends MarginContainer
 class_name GeneralGameButton
 
-# 指向 CanvasGroup，因为 Shader 应该挂在它上面才能解决截断
-@onready var canvas_group = $CanvasGroup
-@onready var label = $CanvasGroup/Label
-@onready var layout_label = $MarginContainer/LayoutLabel
-@onready var margin_container_2 = $MarginContainer
-@onready var button = $Button
+@onready var layout_label: Label = $MarginContainer/LayoutLabel
+@onready var button: Button = $Button
 
-@export var _button_text: String = ""
-@export var _button_disabled: bool = false
-@export var label_transform = Vector2(0, 0)
+var _button_text_value := ""
+var _button_disabled_value := false
 
-# 预加载材质 (确保这些材质现在是 ShaderMaterial，且挂在 CanvasGroup 上)
-var normal_material = preload("res://Art/Material/pixel_word_canvas.tres")
-var disabled_material = preload("res://Art/Material/pixel_word_canvas(disable).tres")
+@export var normal_text_color := Color(0.9413647, 0.9413647, 0.94136465, 1.0)
+@export var normal_shadow_color := Color(0.18359056, 0.18359041, 0.18359044, 1.0)
+@export var normal_outline_color := Color(0.0, 0.0, 0.0, 1.0)
+
+@export var disabled_text_color := Color(0.72, 0.72, 0.72, 1.0)
+@export var disabled_shadow_color := Color(0.12, 0.12, 0.12, 1.0)
+@export var disabled_outline_color := Color(0.0, 0.0, 0.0, 1.0)
+
+@export var _button_text: String = "":
+	set(value):
+		_button_text_value = value
+		_refresh_visuals()
+	get:
+		return _button_text_value
+
+@export var _button_disabled: bool = false:
+	set(value):
+		_button_disabled_value = value
+		_refresh_visuals()
+	get:
+		return _button_disabled_value
+
+@export var label_transform := Vector2.ZERO
 
 signal button_pressed
 
-var is_pointed = false
-var is_pressed = false
+var is_pointed := false
+var is_pressed := false
 
 func _ready() -> void:
 	button.button_down.connect(_on_button_down)
 	button.button_up.connect(_on_button_up)
 	button.mouse_entered.connect(_on_mouse_entered)
 	button.mouse_exited.connect(_on_mouse_exited)
-	label.position += Vector2(42,6)
-	_update_text_and_sync()
+	_refresh_visuals()
 
-func _update_text_and_sync() -> void:
-	button.disabled = _button_disabled
-	layout_label.text = _button_text
-	label.text = _button_text
-	
-	# 1. 强制更新布局逻辑，确保本帧计算出正确的对齐位置
-	layout_label.get_parent().queue_sort() 
-	
-	# 2. 关键：等待布局完成。
-	# 只有在下一帧，或者 call_deferred 之后，layout_label 的真实位置才是准确的
-	await get_tree().process_frame 
-	
-	# 3. 放弃手动加 Vector2(42, 6)，改用全域坐标同步
-	# 这会无视 MarginContainer 的内部偏移、居中对齐带来的位移、以及字体差异
-	if is_instance_valid(label) and is_instance_valid(layout_label):
-		label.global_position = layout_label.global_position
-		
-	# 4. 更新材质
-	canvas_group.material = disabled_material if _button_disabled else normal_material
+func _refresh_visuals() -> void:
+	if not is_node_ready():
+		return
 
+	button.disabled = _button_disabled_value
+	layout_label.text = _button_text_value
+	layout_label.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+	if _button_disabled_value:
+		layout_label.add_theme_color_override("font_color", disabled_text_color)
+		layout_label.add_theme_color_override("font_shadow_color", disabled_shadow_color)
+		layout_label.add_theme_color_override("font_outline_color", disabled_outline_color)
+	else:
+		layout_label.add_theme_color_override("font_color", normal_text_color)
+		layout_label.add_theme_color_override("font_shadow_color", normal_shadow_color)
+		layout_label.add_theme_color_override("font_outline_color", normal_outline_color)
 
 func _on_button_down() -> void:
 	is_pressed = true
@@ -56,10 +66,10 @@ func _on_button_down() -> void:
 		layout_label.position += label_transform
 
 func _on_button_up() -> void:
-	is_pressed = false
-	if is_pointed:
+	if is_pressed and is_pointed:
 		layout_label.position -= label_transform
-		button_pressed.emit()  # 转发信号
+		button_pressed.emit()
+	is_pressed = false
 
 func _on_mouse_entered() -> void:
 	is_pointed = true
@@ -67,14 +77,12 @@ func _on_mouse_entered() -> void:
 		layout_label.position += label_transform
 
 func _on_mouse_exited() -> void:
-	is_pointed = false
 	if is_pressed:
 		layout_label.position -= label_transform
+	is_pointed = false
 
-func disable_button():
+func disable_button() -> void:
 	_button_disabled = true
-	_update_text_and_sync()
 
-func enable_button():
+func enable_button() -> void:
 	_button_disabled = false
-	_update_text_and_sync()
