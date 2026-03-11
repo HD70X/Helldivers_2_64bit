@@ -21,3 +21,6 @@ Release/
 .mono/
 data_*/
 mono_crash.*.json
+
+# Local AI workspace instructions
+AGENTS.md
